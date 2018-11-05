@@ -7,10 +7,9 @@ import org.jpaste.utils.web.Post;
 
 /**
  * Example about how to get the most recent pastes.
- * 
+ * <p>
  * See more on <a href="https://pastebin.com/api_scraping_faq#4">Pastebin
  * Scraping API</a>
- * 
  * @author Felipe V Ramos
  */
 public class MostRecentExample {
@@ -23,14 +22,15 @@ public class MostRecentExample {
 
         // retrieving the 10 most recent java pastes:
         Post post = new Post();
-        post.put("limit", "10");
-        post.put("lang", "java");
+        post.put("limit",
+                 "10");
+        post.put("lang",
+                 "java");
         PastebinLink[] pastebinLinkJava = Pastebin.getMostRecent(post);
         System.out.println(pastebinLinkJava.length);
 
         for (PastebinLink pbl : pastebinLinkJava) {
             System.out.println(pbl.getPaste().getPasteFormat());
         }
-
     }
 }
