@@ -1,11 +1,11 @@
-# build folder in root
-/build/
-
-# Maven output folder
 /target
+/local
+/bin
 
-# Eclipse project files
-.classpath
-.project
-.settings/
-
+# Eclipse, Netbeans and IntelliJ files
+/.*
+!.gitignore
+/nbproject
+/*.ipr
+/*.iws
+/*.iml

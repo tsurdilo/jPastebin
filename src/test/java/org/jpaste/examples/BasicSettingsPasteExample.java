@@ -1,3 +1,5 @@
+package org.jpaste.examples;
+
 import org.jpaste.exceptions.PasteException;
 import org.jpaste.pastebin.PasteExpireDate;
 import org.jpaste.pastebin.PastebinLink;

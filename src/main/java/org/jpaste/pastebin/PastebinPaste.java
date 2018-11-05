@@ -10,22 +10,22 @@ import org.jpaste.utils.web.Post;
 import org.jpaste.utils.web.Web;
 
 /**
- * 
+ *
  * A representation of a new or existing paste.
- * 
+ *
  * <p>
  * This class holds the contents of the paste itself. You can get and modify
- * settings and then 'push' this paste onto <a
- * href="http://pastebin.com/">pastebin.</a>
+ * settings and then 'push' this paste onto
+ * <a href="http://pastebin.com/">pastebin.</a>
  * </p>
- * 
+ *
  * <p>
- * This class has been programmed with the help of the <a
- * href="http://pastebin.com/api/">pastebin API manual.</a>
+ * This class has been programmed with the help of the
+ * <a href="http://pastebin.com/api/">pastebin API manual.</a>
  * </p>
- * 
+ *
  * @author Brian B
- * 
+ *
  */
 public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	/**
@@ -47,6 +47,21 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	private String developerKey;
 	private PastebinAccount account;
 	private String pasteTitle;
+	/**
+	 * @return the pasteAuthor
+	 */
+	public String getPasteAuthor() {
+		return pasteAuthor;
+	}
+
+	/**
+	 * @param pasteAuthor the pasteAuthor to set
+	 */
+	public void setPasteAuthor(String pasteAuthor) {
+		this.pasteAuthor = pasteAuthor;
+	}
+
+	private String pasteAuthor;
 	private String pasteFormat;
 	private PasteExpireDate expireDate;
 	private int visibility;
@@ -60,7 +75,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Creates a new <code>PastebinPaste</code> instance.
-	 * 
+	 *
 	 * @param contents
 	 *            the paste contents
 	 */
@@ -70,7 +85,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Creates a new <code>PastebinPaste</code> instance.
-	 * 
+	 *
 	 * @param account
 	 *            a pastebin account
 	 */
@@ -80,7 +95,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Creates a new <code>PastebinPaste</code> instance.
-	 * 
+	 *
 	 * @param developerKey
 	 *            a developer key which can be fetched from the pastebin API
 	 *            page
@@ -93,7 +108,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Creates a new <code>PastebinPaste</code> instance.
-	 * 
+	 *
 	 * @param developerKey
 	 *            a developer key which can be fetched from the pastebin API
 	 *            page
@@ -102,8 +117,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	 * @param account
 	 *            a pastebin account
 	 */
-	public PastebinPaste(String developerKey, String contents,
-			PastebinAccount account) {
+	public PastebinPaste(String developerKey, String contents, PastebinAccount account) {
 		super(contents);
 		this.developerKey = developerKey;
 		this.account = account;
@@ -112,7 +126,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	/**
 	 * Sets the pastebin account If you set an account the pastes will be listed
 	 * on your account.
-	 * 
+	 *
 	 * @param account
 	 *            a pastebin account
 	 */
@@ -122,7 +136,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Gets the pastebin account
-	 * 
+	 *
 	 * @return pastebin account
 	 */
 	public PastebinAccount getAccount() {
@@ -132,22 +146,21 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	/**
 	 * Sets the developer key The developer key is required to paste contents on
 	 * pastebin
-	 * 
+	 *
 	 * @param developerKey
 	 *            a developer key which can be fetched from the pastebin API
 	 *            page
 	 */
 	public void setDeveloperKey(String developerKey) {
 		if (developerKey == null || developerKey.isEmpty()) {
-			throw new IllegalArgumentException(
-					"Developer key can not be null or empty.");
+			throw new IllegalArgumentException("Developer key can not be null or empty.");
 		}
 		this.developerKey = developerKey;
 	}
 
 	/**
 	 * Sets the paste expire date
-	 * 
+	 *
 	 * @param date
 	 *            date when the paste will be removed
 	 */
@@ -157,7 +170,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Gets the developer key
-	 * 
+	 *
 	 * @return developer key
 	 */
 	public String getDeveloperKey() {
@@ -166,7 +179,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Sets the paste title
-	 * 
+	 *
 	 * @param title
 	 *            title of the paste
 	 */
@@ -176,15 +189,16 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Gets paste title
-	 * 
+	 *
 	 * @return paste title
 	 */
 	public String getPasteTitle() {
 		return this.pasteTitle;
 	}
-	
+
 	/**
 	 * Gets paste expire date
+	 *
 	 * @return paste expire date
 	 */
 	public PasteExpireDate getPasteExpireDate() {
@@ -193,7 +207,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Sets the paste format The format is used for syntax highlighting
-	 * 
+	 *
 	 * @see <a href="http://pastebin.com/api#5">available syntax highlighting
 	 *      formats</a>
 	 * @param format
@@ -205,7 +219,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 
 	/**
 	 * Gets paste format
-	 * 
+	 *
 	 * @return paste format
 	 */
 	public String getPasteFormat() {
@@ -226,14 +240,13 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	 * <p>
 	 * {@link PastebinPaste#VISIBILITY_PRIVATE}
 	 * </p>
-	 * 
+	 *
 	 * @param visibility
 	 *            the paste it's visibility
 	 */
 	public void setVisibility(int visibility) {
 		if (visibility < 0 || visibility > 2) {
-			throw new IllegalArgumentException("Unknown visibility: "
-					+ visibility);
+			throw new IllegalArgumentException("Unknown visibility: " + visibility);
 		}
 		this.visibility = visibility;
 	}
@@ -252,7 +265,7 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 	 * <p>
 	 * {@link PastebinPaste#VISIBILITY_PRIVATE}
 	 * </p>
-	 * 
+	 *
 	 * @return visibility of this paste
 	 */
 	public int getVisibility() {
@@ -297,12 +310,10 @@ public class PastebinPaste extends AbstractPaste<PastebinLink> {
 			String pageResponse = Web.getContents(Pastebin.API_POST_LINK, post);
 			if (pageResponse.startsWith("http")) {
 				// success
-				PastebinLink result = new PastebinLink(this, new URL(
-						pageResponse));
+				PastebinLink result = new PastebinLink(this, new URL(pageResponse));
 				return result;
 			}
-			throw new PasteException("Failed to generate paste: "
-					+ pageResponse);
+			throw new PasteException("Failed to generate paste: " + pageResponse);
 		} catch (MalformedURLException e) {
 			// shouldn't happen
 			throw new PasteException("Failed to generate paste: " + e);
